@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Expense Tracker App</h2>
+      <!--Total Budget section starts-->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Monthly Income: INR <span id="total-income">{{ totalIncome }}</span></h5>
+          <h5 class="card-title">Total Monthly Expense: INR <span id="total-expense">{{ totalExpense }}</span></h5>
+          <h5 class="card-title">Balance Remaining: INR <span id="balance">{{ totalBalance }}</span></h5>
+        </div>
+      </div>
+      <!--Total Budget section ends-->
+  <!--Entries section starts-->
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li *ngFor="let entry of entries" class="list-group-item">
+          <strong>{{ entry.type }}:</strong> {{ entry.description }} - INR {{ entry.amount }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--Entries section ends-->
+    </div>
+    <div class="col-md-4">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [type]="pieChartType">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': isModalOpen}" [ngStyle]="{'display': isModalOpen ? 'block' : 'none'}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">{{ modalTitle }}</h5>
+          <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="modalTitle === 'Log Income' ? saveIncome() : saveExpense()">
+            <div class="form-group">
+              <label for="amount">Amount(INR)</label>
+              <input type="number" id="amount" [(ngModel)]="entry.amount" name="amount" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" id="description" [(ngModel)]="entry.description" name="description" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Buttons section starts-->
+  <div class="row mt-5">
+    <div class="col text-right">
+      <button class="btn btn-primary" (click)="logIncome()">Log Income</button>
+    </div>
+    <div class="col text-right">
+      <button class="btn btn-primary" (click)="logExpense()">Log Expense</button>
+    </div>
+  </div>
+  <!--Buttons section ends-->
+</div>
