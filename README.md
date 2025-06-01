@@ -6,8 +6,7 @@ This app was built entirely through Copilot prompts! A good starting point to ex
 
 ## 🚀 Project Features
 
-The Angular app helps track users' total income, expenses, balance and visualize their spending via chart. It features a clean UI, modal dialogs for adding entries, a running list of all transactions, with data stored in memory.  
-**Note:** All data will be lost if the page is refreshed or the browser/tab is closed.
+The Angular app helps track the user's total income, expenses, balance and visualize their spending via chart. It features a clean UI, modal dialogs for adding entries, a running list of all transactions, with data stored in-memory.  
 
 ---
 
@@ -75,5 +74,6 @@ npm install
 ng serve
 ```
 Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser.
+**Note:** All data will be lost if the page is refreshed or the browser/tab is closed.
 
 ---
